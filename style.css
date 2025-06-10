@@ -21,7 +21,7 @@ body {
     width: 1000px;
     height: 600px;
     max-width: 90vw;
-    max-height: 80vh;
+    /* max-height: 80vh; */
     transform-origin: center;
 }
 
@@ -62,7 +62,35 @@ body {
     margin-bottom: 10px;
 }
 
-/* Add these media queries at the end of your style.css */
+
+
+
+
+.navigation {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 20px;
+  z-index: 1000;
+}
+
+.nav-btn {
+  padding: 10px 20px;
+  background: #c0392b;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+}
+
+.nav-btn:hover {
+  background: #a93226;
+}
+
 
 /* Mobile Portrait - Single page view */
 @media screen and (max-width: 768px) and (orientation: portrait) {
@@ -89,8 +117,77 @@ body {
     height: 75vh;
   }
 }
-@media screen and (max-width: 768px) {
-    .flipbook {
-        transform: scale(0.5);
-    }
+@media screen and (max-width: 480px) and (orientation: portrait) {
+  body {
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 5px;
+  }
+  
+  .flipbook {
+    width: 95vw;
+    height: auto;
+    min-height: 100vh;
+    flex-direction: column;
+  }
+  
+  .flipbook .page {
+    width: 100%;
+    height: 80vh;
+    margin-bottom: 10px;
+  }
+}
+
+/* Mobile Landscape - Two pages */
+@media screen and (max-width: 768px) and (orientation: landscape) {
+  .flipbook {
+    width: 95vw;
+    height: 85vh;
+    transform: scale(0.8);
+  }
+}
+
+/* Large Mobile Portrait */
+@media screen and (min-width: 481px) and (max-width: 768px) and (orientation: portrait) {
+  .flipbook {
+    width: 90vw;
+    height: 75vh;
+    transform: scale(0.7);
+  }
+}
+
+/* Tablet Portrait */
+@media screen and (min-width: 769px) and (max-width: 1024px) and (orientation: portrait) {
+  .flipbook {
+    width: 80vw;
+    height: 70vh;
+    transform: scale(0.85);
+  }
+}
+
+/* Tablet Landscape */
+@media screen and (min-width: 769px) and (max-width: 1024px) and (orientation: landscape) {
+  .flipbook {
+    width: 90vw;
+    height: 80vh;
+    transform: scale(0.9);
+  }
+}
+
+/* Small Laptop */
+@media screen and (min-width: 1025px) and (max-width: 1366px) {
+  .flipbook {
+    width: 1000px;
+    height: 600px;
+    transform: scale(1);
+  }
+}
+
+/* Large Desktop */
+@media screen and (min-width: 1367px) {
+  .flipbook {
+    width: 1000px;
+    height: 600px;
+    transform: scale(1.1);
+  }
 }

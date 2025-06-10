@@ -3,7 +3,8 @@
 
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0, minimum-scale=1.0">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0, minimum-scale=1.0">
   <link rel="stylesheet" href="style.css" />
   <title>Pokemon Magazine</title>
 </head>
@@ -40,27 +41,55 @@
     <div class="hard">Thank You <small>~ HankTheTank</small></div>
   </div>
 
+  <div class="navigation">
+    <button id="prevBtn" class="nav-btn">❮ Previous</button>
+    <button id="nextBtn" class="nav-btn">Next ❯</button>
+  </div>
+
   <script src="jquery.js"></script>
   <script src="turn.js"></script>
   <script>
     $(".flipbook").turn();
 
     function initializeFlipbook() {
-  const isPortrait = window.innerHeight > window.innerWidth;
-  const isMobile = window.innerWidth <= 768;
-  
-  $(".flipbook").turn('destroy'); // Destroy existing instance
-  
-  $(".flipbook").turn({
-    width: 1000,  // Keep original width
-    height: 600,  // Keep original height
-    autoCenter: true,
-    display: (isMobile && isPortrait) ? 'single' : 'double',
-    acceleration: true,
-    gradients: true,
-    elevation: 50
-  });
-}
+      const isPortrait = window.innerHeight > window.innerWidth;
+      const isMobile = window.innerWidth <= 768;
+      const isTablet = window.innerWidth > 768 && window.innerWidth <= 1024;
+
+      $(".flipbook").turn('destroy'); // Destroy existing instance
+
+      $(".flipbook").turn({
+        width: 1000,  // Keep original width
+        height: 600,  // Keep original height
+        autoCenter: true,
+        display: (isMobile && isPortrait) ? 'single' : 'double',
+        acceleration: true,
+        gradients: true,
+        elevation: 50,
+        when: {
+          turned: function (event, page, view) {
+            if (isMobile && isPortrait) {
+              // Enable vertical scroll behavior
+            }
+          }
+        }
+      });
+    }
+    $(window).on('resize orientationchange', function () {
+      setTimeout(initializeFlipbook, 100);
+    });
+
+    // Navigation buttons  
+    $('#prevBtn').click(function () { $('.flipbook').turn('previous'); });
+    $('#nextBtn').click(function () { $('.flipbook').turn('next'); });
+
+    // Orientation change detection
+    $(window).on('orientationchange', function () {
+      setTimeout(function () {
+        // Check actual orientation and update accordingly
+        initializeFlipbook();
+      }, 500);
+    });
   </script>
 </body>
 
