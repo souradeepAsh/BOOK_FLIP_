@@ -10,15 +10,19 @@
 body {
     display: grid;
     place-content: center;
-    height: 100vh;
+    min-height: 100vh;
     width: 100vw;
-	overflow: hidden;
-	background: #f1c40f;
+    overflow: hidden;
+    background: #000000;
+    padding: 10px; /* Add some padding for mobile */
 }
 
 .flipbook {
     width: 1000px;
     height: 600px;
+    max-width: 90vw;
+    max-height: 80vh;
+    transform-origin: center;
 }
 
 .flipbook .hard {
@@ -45,10 +49,12 @@ body {
     border: 1px solid rgba(0, 0, 0, 0.11);
 }
 
-.page img{
-	width: 70%;
-	object-fit: cover;
-	margin: auto;
+.page img {
+    width: 70%;
+    max-width: 100%;
+    height: auto;
+    object-fit: contain; /* Changed from cover to contain */
+    margin: auto;
 }
 
 .flipbook .page small{
@@ -56,3 +62,35 @@ body {
     margin-bottom: 10px;
 }
 
+/* Add these media queries at the end of your style.css */
+
+/* Mobile Portrait - Single page view */
+@media screen and (max-width: 768px) and (orientation: portrait) {
+  .flipbook {
+    width: 90vw;
+    height: 70vh;
+    /* Force single page display */
+  }
+}
+
+/* Mobile Landscape - Two page view */
+@media screen and (max-width: 768px) and (orientation: landscape) {
+  .flipbook {
+    width: 95vw;
+    height: 85vh;
+    /* Allow two page display */
+  }
+}
+
+/* Tablet styles */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .flipbook {
+    width: 85vw;
+    height: 75vh;
+  }
+}
+@media screen and (max-width: 768px) {
+    .flipbook {
+        transform: scale(0.5);
+    }
+}

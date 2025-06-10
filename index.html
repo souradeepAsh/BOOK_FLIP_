@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0, minimum-scale=1.0">
   <link rel="stylesheet" href="style.css" />
   <title>Pokemon Magazine</title>
 </head>
@@ -44,6 +44,23 @@
   <script src="turn.js"></script>
   <script>
     $(".flipbook").turn();
+
+    function initializeFlipbook() {
+  const isPortrait = window.innerHeight > window.innerWidth;
+  const isMobile = window.innerWidth <= 768;
+  
+  $(".flipbook").turn('destroy'); // Destroy existing instance
+  
+  $(".flipbook").turn({
+    width: 1000,  // Keep original width
+    height: 600,  // Keep original height
+    autoCenter: true,
+    display: (isMobile && isPortrait) ? 'single' : 'double',
+    acceleration: true,
+    gradients: true,
+    elevation: 50
+  });
+}
   </script>
 </body>
 
